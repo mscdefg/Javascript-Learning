@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //★案例：倒计时
+        function countDown(time) {
+            var nowTime = +new Date();
+            var inputTime = +new Date(time);
+            var times = (inputTime - nowTime) / 1000;
+            var d = parseInt(times / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d;
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            var s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            return d + '天' + h + '时' + m + '分' + s + '秒';
+        }
+        console.log(countDown('2022-11-14 13:59:59'));  //★★★字符串，要加''
+
+        var arr = new Array();  //创建一个空数组
+        var arr2 = new Array(2);  //数组长度为2的一个空数组
+        var arr3 = new Array(2, 3);   //数组[2,3]
+        console.log(arr2);
+        console.log(arr3);
+
+        //★检测是否为数组
+        //方法1：instanceof
+        var arr4 = [];
+        var obj = {};
+        console.log(arr4 instanceof Array);
+        console.log(obj instanceof Array);
+
+        function reverse(arr) {
+            // if (arr instanceof Array) {
+            if (Array.isArray(arr)) {
+                var newArr = [];
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    newArr[newArr.length] = arr[i];
+                }
+                return newArr;
+            } else {
+                return '这个参数必须是数组格式：[1,2,3]'
+            }
+        }
+        console.log(reverse([1, 2, 3, 4]));
+        console.log(reverse(1, 2, 3, 4));
+
+        //方法2：Array.isArray() ;H5新增 I9以上
+        console.log(Array.isArray(arr4));
+        console.log(Array.isArray(obj));
+
+        //★添加、删除数组元素
+        //1.push(),在数组末尾添加
+        var arr5 = [1, 2, 3];
+        arr5.push(4, 'five');
+        console.log(arr5);
+
+        var arr6 = [1, 4, 7];
+        console.log(arr6.push(3, 9));  //push完毕后，返回的结果时新数组的长度
+        console.log(arr6);  //原数组也会发生变化
+
+        //2.unshift,在数组开头添加
+        arr6.unshift('eight');  //同push
+        console.log(arr6);
+
+        //3.pop()，删除数组最后一个
+        var arr7 = [9, 8, 7];
+        arr7.pop();
+        console.log(arr7);
+
+        var arr8 = [9, 8, 7];
+        console.log(arr8.pop());  //返回删除的那个元素
+        console.log(arr8);  //原数组也会发生变化
+
+        //4.shift(),删除数组第一个
+        var arr9 = [9, 8, 7];
+        arr9.shift();
+        console.log(arr9);
+
+        var arr10 = [9, 8, 7];
+        console.log(arr10.shift());  //同pop  
+        console.log(arr10);
+
+        //★案例：筛选数组
+        var salary = [1500, 1200, 2000, 2100, 1800];
+        var newSalary = [];
+        for (var j = 0; j < salary.length; j++) {
+            if (salary[j] < 2000) {
+                // newSalary[newSalary.length] = salary[j];  原方法
+                newSalary.push(salary[j]);
+            }
+        }
+        console.log(newSalary);
+
+        //★翻转数组
+        var arr11 = ['我', '在', '想', '你'];
+        arr11.reverse();
+        console.log(arr11);
+
+        //★冒泡排序
+        var arr12 = [1, 5, 3, 6, 9]; //★★★★只能实现1~9的排序
+        arr12.sort();
+        console.log(arr12);
+
+        var arr13 = [13, 53, 34, 26, 9];
+        arr13.sort(function (a, b) {   //升序排列
+            return a - b;
+        });
+        console.log(arr13);
+
+        var arr13 = [13, 53, 34, 26, 9];
+        arr13.sort(function (a, b) {   //降序排列
+            return b - a;
+        });
+        console.log(arr13);
+
+        //★返回数组元素索引号
+        var arr14 = ['apple', 'orange', 'coconut'];
+        console.log(arr14.indexOf('orange'));     //从前面开始查找
+        console.log(arr14.indexOf('pineapple'));  //找不到该元素，则返回-1
+        console.log(arr14.lastIndexOf('coconut'));  //从后面开始查找
+
+        //★★案例：数组去重
+        function unique(arrays) {
+            var newArrays = [];
+            for (var k = 0; k < arrays.length; k++) {
+                if (newArrays.indexOf(arrays[k]) === -1) {
+                    newArrays[newArrays.length] = arrays[k];
+                }
+            }
+            return newArrays;
+        }
+        console.log(unique([1, 3, 4, 22, 5, 1, 6, 3]));
+
+        //★数组转换为字符串
+        //1.toString()
+        var arr15 = [1, 2, 3];
+        console.log(arr15.toString());
+        //2.join(分隔符)
+        console.log(arr15.join('&'));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
