@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //简单数据类型 strting number boolean undefined null
+        var timer = null;
+        console.log(typeof timer);  //object空对象,是例外
+        var timer1 = true;
+        console.log(typeof timer1);   //bollean
+        //一般用于，如果有个变量以后打算存储为对象的
+        //复杂数据类型  存储的仅仅是地址，通过new创建的、Object Array Date
+
+        //1.简单数据类型放在栈，存放的值
+        //2.简单数据类型传参
+        function fn(a) {
+            a++;
+            console.log(a);
+        }
+        var x = 10;
+        fn(x);     //11
+        console.log(x);   //10
+        //1.复杂数据类型首先在栈里面存放地址，十六进制表示，再指向堆里面的数据
+        //2.复杂数据类型传参
+        function Snack(name) {
+            this.name = name;
+        }
+        function f1(x) {
+            console.log(x.name);
+            x.name = "沙琪玛";
+            console.log(x.name);
+        }
+        var p = new Snack("蛋黄酥");
+        console.log(p.name);
+        f1(p);
+        console.log(p.name);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

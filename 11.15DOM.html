@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='time'>2024.6.31</div>
+    <ul>
+        <li>江畔何人初见月？江月何年初照人？</li>
+        <li>人生代代无穷已，江月年年望相似。</li>
+        <li>不知江月待何人，但见长江送流水。</li>
+    </ul>
+    <script>
+        //getElementById获取元素
+        var timer = document.getElementById('time');
+        console.log(timer);
+        console.log(typeof timer);   //object
+        console.dir(timer);  //打印返回的元素对象
+
+        //getElementsByTagName 返回获取过来元素对象的集合，以伪数组形势存储
+        var lis = document.getElementsByTagName('li');
+        console.log(lis);
+        console.log(lis[2]);
+        for (var i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        }
+
+    </script>
+
+</body>
+
+</html>
