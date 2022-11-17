@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //基本包装类型
+        var str = 'claire';
+        console.log(str.length);    //6
+        //把简单数据类型包装成复杂数据类型
+        //var temp =new String('claire');
+        //str =temp;
+        //temp =null;   销毁临时变量
+
+        //字符串的不可变性
+        console.log(str);
+        var str = 'mike';
+        console.log(str);
+        //不要大量拼接字符串
+
+        //★根据字符返回位置
+        var str1 = '军书十二卷，卷卷有爷名';
+        console.log(str1.indexOf('卷'));    //4
+        console.log(str1.indexOf('卷', [6]));   //从索引号是6的位置开始查找
+        console.log(str1.indexOf('卷', [7]));
+
+        //★★案例:查找字符串中所有'o'出现的位置及次数
+        var str2 = 'aobouohkohgos';
+        var index = str2.indexOf('o');
+        var num = 0;
+        while (index !== -1) {
+            console.log(index);
+            num++;
+            index = str2.indexOf('o', index + 1);
+        }
+        console.log('o出现的次数是' + num);
+
+        //★根据位置返回字符
+        //1.charAt()
+        var str3 = 'lalaland';
+        console.log(str3.charAt(1));
+        for (var i = 0; i < str3.length; i++) {
+            console.log(str3.charAt(i));
+        }
+        //2.charCodeAt()   返回字符的ASCII码
+        console.log(str3.charCodeAt(1));   //97
+        //3.str[]  H5新增  IE8
+        console.log(str3[0]);
+
+        //★★案例：判断字符串中出现次数最多的字符，并计数
+        //铺垫：
+        // var o = {
+        //     age: 18    //★不需要分号
+        // }
+        // if (o['age']) {
+        //     console.log('里面有该属性');
+        // } else {
+        //     console.log('里面没有该属性');
+        // }
+        var str4 = 'abcoefoxyozzopp';
+        var o = {};
+        for (var j = 0; j < str4.length; j++) {
+            var chars = str4.charAt(j);   //chars是字符串的每一个字符
+            if (o[chars]) {      //0[chars]得到的是属性值
+                o[chars]++;
+            } else {
+                o[chars] = 1;
+            }
+        }
+        console.log(o);
+        var max = 0;
+        for (var k in o) {     //遍历对象，得到属性名
+            if (o[k] > max) {    //o[k]得到属性值
+                max = o[k]
+                ch = k;
+            }
+        }
+        console.log(max);
+        console.log('最多的字符是' + ch);
+
+        //★拼接字符串  concat
+        var str5 = 'san';
+        console.log(str5.concat('francisco'));   //等效于+
+
+        //★截取字符串  substr(从第几个开始, 取几个)
+        var str6 = '聊赠一枝春';
+        console.log(str6.substr(2, 2));
+
+        //★替换字符串  replace('被替换的'，'替换为的')  只替换第一个字符
+        console.log(str6.replace('春', '秋'));
+
+        var str7 = 'shitshitshitshit';  //要求把里面所有i替换成*
+        while (str7.indexOf('i') !== -1) {
+            str7 = str7.replace('i', '*');
+        }
+        console.log(str7);
+
+        //★字符串转换为数组  split('分隔符')
+        var str8 = '春江潮水连海平-海上明月共潮生';    //,&均可  前后一致
+        console.log(str8.split('-'));
+
+        //
+        var str9 = 'warning-ATTENTION';
+        console.log(str9.toUpperCase());
+        console.log(str9.toLowerCase());
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
