@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        /* 子绝父相 */
+        position: relative;
+        width: 400px;
+        /* 默认是没有的，加上下边框： */
+        border-bottom: 1px solid #ccc;
+        margin: 100px auto;
+    }
+
+    .box input {
+        width: 370px;
+        height: 30px;
+        border: 0;
+        /* 输入时不显现轮廓     context-border-outline */
+        outline: none;
+    }
+
+    .box img {
+        /* 子绝父相 */
+        position: absolute;
+        top: 3px;
+        right: 18px;
+        width: 30px;
+
+    }
+</style>
+
+<body>
+    <div class="box">
+        <label for="">
+            <img src="./eyeclose.png" alt="" id="eye">
+        </label>
+        <input type="password" name="" id="pwd">
+    </div>
+    <script>
+        var eye = document.getElementById('eye');
+        var pwd = document.getElementById('pwd');
+        var flag = 0;
+        eye.onclick = function () {
+            if (flag == 0) {
+                pwd.type = 'text';
+                eye.src = "./eyeopen.png";
+                flag = 1;    //赋值
+            } else {
+                pwd.type = 'password';
+                eye.src = "./eyeclose.png";
+                flag = 0;
+            }
+
+
+        }
+
+    </script>
+</body>
+
+</html>
