@@ -9,28 +9,166 @@
 </head>
 
 <body>
-    <div id='time'>2024.6.31</div>
+    <div id="time">2024.6.31</div>
     <ul>
         <li>江畔何人初见月？江月何年初照人？</li>
         <li>人生代代无穷已，江月年年望相似。</li>
         <li>不知江月待何人，但见长江送流水。</li>
     </ul>
+    <div class="box">盒子1</div>
+    <div class="box">盒子2</div>
+    <div id="nav">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+
+        </ul>
+    </div>
+
     <script>
-        //getElementById获取元素
+        //★获取元素(都以伪数组形势表现)
+        //1.getElementById获取元素
         var timer = document.getElementById('time');
         console.log(timer);
         console.log(typeof timer);   //object
         console.dir(timer);  //打印返回的元素对象
 
-        //getElementsByTagName 返回获取过来元素对象的集合，以伪数组形势存储
+        //2.getElementsByTagName 返回获取过来元素对象的集合，以伪数组形势存储
         var lis = document.getElementsByTagName('li');
         console.log(lis);
         console.log(lis[2]);
         for (var i = 0; i < lis.length; i++) {
             console.log(lis[i]);
         }
+        //页面中只有一个li,返回的还是伪数组；页面中没有元素，返回空伪数组
+
+        //3.getElementsByClassName  根据类名返回元素对象集合  H5新增
+        var boxs = document.getElementsByClassName('box');
+        console.log(boxs);
+
+        //4.querySelesctor('选择器')  根据指定选择器返回第一个元素对象  H5新增
+        var firstBox = document.querySelector('.box');   //.表明类选择器
+        console.log(firstBox);
+        var nav = document.querySelector('#nav');    //#表明id选择器
+        console.log(nav);
+        var li = document.querySelector('li')   //标签选择器,返回第一个
+        console.log(li);
+
+        //5.querySelectorAll  根据指定选择器返回所有元素，同3，更简单
+        var allElements = document.querySelectorAll('.box');
+        console.log(allElements);
+
+        //★获取特殊元素
+        //1.body
+        var bodyEle = document.body;
+        console.log(bodyEle);
+        console.dir(bodyEle);
+
+        //2.html
+        var htmlEle = document.documentElement;
+        console.log(htmlEle);
+
+
 
     </script>
+
+    <button id="btn">点我获取地点</button>
+    <button id="btn1">点我获取时间</button>
+    <div id='sometime'>某个时间</div>
+    <button id="btn2">距离新年还有</button>
+    <p></p>
+    <button id="btn3">我需要加粗我不要</button>
+    <button id="btn4">我需要加粗我不要</button>
+    <p id="p1">
+        我是文字
+        <span>123</span>
+    </p>
+
+    <button id="xrk">向日葵</button>
+    <button id="mt">麦田</button><br>
+    <img src="C:\Users\Lenovo\Desktop\html learning\向日葵.png" alt="" title="向日葵">
+
+    <script>
+        //★事件基础 
+        var btn = document.getElementById('btn');    //获取事件源
+        btn.onclick = function () {
+            alert('苏州市');
+        }
+
+        //★操作元素
+        //1.改变元素内容
+        //①innerText   //btn.onclik绑定事件,function添加事件处理程序
+
+        var btn1 = document.getElementById('btn1');
+        var div1 = document.getElementById('sometime')
+
+        btn1.onclick = function () {
+            div1.innerText = '2022.11.16';   //死时间
+        }
+
+        function countDown(time) {           //活时间
+            var nowTime = +new Date();
+            var inputTime = +new Date(time);
+            var times = (inputTime - nowTime) / 1000;
+            var d = parseInt(times / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d;
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            var s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            return d + '天' + h + '时' + m + '分' + s + '秒';
+        }
+        var btn2 = document.getElementById('btn2');
+        btn2.onclick = function () {
+            alert(countDown('2023.1.1'));
+        }
+        //元素不添加事件，直接使用
+        var p = document.querySelector('p')
+        p.innerText = countDown('2023.1.1')
+
+        //②innerHtml
+        //区别：
+        //1.innnerText 不识别html标签 非表准
+        //  innerHtml 识别html标签 W3C表准
+        var btn3 = document.getElementById('btn3');
+        btn3.innerText = '<strong>我需要加粗</strong>我不要';
+        var btn4 = document.getElementById('btn4');
+        btn4.innerHTML = '<strong>我需要加粗</strong>我不要';
+        //2.innerText 自动去除空格和换行
+        //  innerHtml 保留
+        var p1 = document.getElementById('p1');
+        console.log(p1.innerText);
+        console.log(p1.innerHTML);
+
+        //修改元素属性src                  ★★★★★★★错了，找不到错误
+        var xrk = document.getElementById('xrk');
+        var mt = document.getElementById('mt');
+        var img = document.querySelector('img');
+        mt.onclick = function () {
+            img.src = 'C:\Users\Lenovo\Desktop\html learning\麦田.png';
+            img.title = '麦田';
+        }
+        xrk.onclick = function () {
+            img.src = 'C:\Users\Lenovo\Desktop\html learning\向日葵.png.jpeg';
+        }
+    </script>
+    <div>早上好</div>
+    <script>
+        var div = document.querySelector('div');
+        var date = new Date();
+        var h = date.getHours;
+        if (h < 12) {
+            div.innerHTML = '早上好';
+        } else if (h < 18) {
+            div.innerHTML = '下午好';
+        } else {
+            div.innerHTML = '晚上好';
+        }
+    </script>
+
+
 
 </body>
 
