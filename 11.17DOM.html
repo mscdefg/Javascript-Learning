@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div1 {
+        width: 100px;
+        height: 100px;
+        background-color: #191970;
+        color: azure;
+    }
+
+    #box2 {
+        width: 250px;
+        margin: 100px auto;
+    }
+
+    li {
+        float: left;
+        width: 24px;
+        height: 24px;
+        background-color: #191970;
+        margin: 15px;
+        list-style: none;
+        background: url(./淘宝精灵图.png) no-repeat;
+    }
+
+    input {
+        color: #999;
+    }
+
+    .div3 {
+        width: 100px;
+        height: 100px;
+        background-color: #191970;
+        color: azure;
+    }
+
+    .change {
+        width: 100px;
+        height: 100px;
+        background-color: #ff9912;
+        color: azure;
+    }
+</style>
+
+<body>
+    <div id="div1">Hello world!</div>
+    <script>
+        //★修改样式属性
+        var di1 = document.getElementById('div1');
+        div1.onclick = function () {
+            //dive.style
+            this.style.backgroundColor = '#ff9912';   //驼峰命名法
+        }
+    </script>
+
+    <!-- ★案例：去除广告 -->
+    <div class="box">
+        <div>我是广告</div>
+        <i class="close-btn">x</i>
+    </div>
+
+    <script>
+        var closeBtn = document.querySelector('.close-btn');
+        var box = document.querySelector('.box');
+        closeBtn.onclick = function () {
+            box.style.display = 'none';
+        }
+    </script>
+
+    <!-- ★案例：用循环做淘宝精灵图 -->
+    <div id="box2">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        var lis = document.querySelectorAll('li');   //★注意All
+        for (var i = 0; i < lis.length; i++) {
+            var index = i * 44;
+            lis[i].style.backgroundPosition = '0 -' + index + 'px';   //★注意驼峰和负号
+        }
+    </script>
+
+    <!-- ★案例：显示隐藏文本框内容 -->
+    <input type="text" value="请输入">
+    <script>
+        var text = document.querySelector('input');
+        text.onfocus = function () {
+            if (this.value === '请输入') {
+                this.value = '';
+            }
+            //获得焦点后把文本框里文字颜色变黑
+            this.style.color = '#333';
+        }
+        text.onblur = function () {
+            if (this.value === '') {
+                this.value = '请输入';
+            }
+            //失去焦点后把文字颜色再次变浅
+            this.style.color = '#999';
+
+        }
+    </script>
+    <!-- 用claaName修改样式属性 -->
+    <div class="div3">To be a coder</div>
+    <script>
+        var div3 = document.getElementsByClassName('div3');
+        div3.onclick = function () {
+            this.className = 'change';
+        }
+    </script>
+</body>
+
+</html>
