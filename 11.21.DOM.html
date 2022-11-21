@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .class {
+            width: 600px;
+            margin: 100px auto;
+        }
+
+        .message {
+            display: inline-block;
+            font-size: 12px;
+            color: #999;
+            background: url(images/attention.png) no-repeat;
+            padding-left: 20px;
+        }
+
+        .wrong {
+            color: red;
+            background-image: url(images/wrong.png);
+        }
+
+        .right {
+            color: green;
+            background-image: url(images/right.png);
+        }
+
+        body {
+            background: url(images/老人.jpg) no-repeat center top;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .baidu {
+            overflow: hidden;
+            margin: 100px auto;
+            background-color: #fff;
+            width: 410px;
+            padding-top: 3px;
+        }
+
+        .baidu li {
+            float: left;
+            margin: 0 1px;
+            cursor: pointer;
+        }
+
+        .baidu img {
+            width: 100px;
+        }
+
+        table {
+            width: 800px;
+            margin: 100px auto;
+            text-align: center;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead tr {
+            height: 30px;
+            background-color: skyblue;
+        }
+
+        tbody tr {
+            height: 30px;
+        }
+
+        tbody td {
+            border-bottom: 1px solid #d7d7d7;
+            font-size: 12px;
+            color: black;
+        }
+
+        .bg {
+            background-color: cadetblue;
+        }
+
+
+
+        .current {
+            background-color: red;
+            color: #fff;
+        }
+
+        .item {
+            display: none;
+        }
+
+        /* 注意是给li */
+        .tab_lis li {
+            float: left;
+            height: 39px;
+            line-height: 39px;
+            padding: 0 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ★案例：密码框验证信息 -->
+    <div class="register">
+        <input type="password" class="ipt">
+        <p class="message ">请输入6~16位密码</p>
+    </div>
+    <script>
+        var ipt = document.querySelector('.ipt')
+        var message = document.querySelector('.message')
+        ipt.onblur = function () {
+            // 根据表单里面值的长度 ipt.value.length
+            if (this.value.length < 6 || this.value.length > 16) {
+                message.className = 'message wrong'   //要保留原先的className
+                message.innerHTML = '您输入的位数不正确，要求6~16位'
+            } else {
+                message.className = 'message right'
+                message.innerHTML = '您输入符合要求'
+            }
+        }
+    </script>
+
+    <!-- 排他思想 -->
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+        var btns = document.getElementsByTagName('button');
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].style.backgroundColor = '';
+                }
+                this.style.backgroundColor = 'pink';
+            }
+        }
+    </script>
+
+    <!-- 百度换肤 -->
+    <ul class="baidu">
+        <li><img src="images/老人.jpg" alt=""></li>
+        <li><img src="images/杀手.jpg" alt=""></li>
+        <li><img src="images/球员.jpg" alt=""></li>
+    </ul>
+    <script>
+        var imgs = document.querySelector('.baidu').querySelectorAll('img');   //★★★
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function () {
+                document.body.style.backgroundImage = 'url(' + this.src + ')'  //引引加加★★★
+            }
+        }
+    </script>
+
+    <!-- 表格隔行变色 -->
+    <table>
+        <thead>
+            <tr>
+                <th>代码</th>
+                <th>名称</th>
+                <th>最新公布的净值</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>农业银行</td>
+                <td>1.0</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>工商银行</td>
+                <td>1.9</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>中国银行</td>
+                <td>2.2</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var trs = document.querySelector('tbody').querySelectorAll('tr');
+        for (var i = 0; i < trs.length; i++) {
+            trs[i].onmouseover = function () {
+                this.className = 'bg';
+            }
+            trs[i].onmouseout = function () {
+                this.className = '';
+            }
+        }
+    </script>
+    <!-- 表单全选与取消全选 -->
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="j_cbAll"></th>
+                <th>商品</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody id="j_tb">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone14</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>ipad pro</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>apple watch</td>
+                <td>2000</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var j_cbAll = document.getElementById('j_cbAll');
+        var j_tbs = document.getElementById('j_tb').getElementsByTagName('input');
+        j_cbAll.onclick = function () {
+            for (var i = 0; i < j_tbs.length; i++) {
+                j_tbs[i].checked = this.checked;
+            }
+        }
+        for (var i = 0; i < j_tbs.length; i++) {
+            j_tbs[i].onclick = function () {
+                var flag = true;
+                for (var i = 0; i < j_tbs.length; i++) {
+                    if (!j_tbs[i].checked) {
+                        flag = flase;
+                        break;
+                    }
+                }
+                j_cbAll.checked = flag;
+            }
+        }
+    </script>
+
+    <!-- 获取自定义属性 -->
+    <div id="demo" index="momo">获取属性</div>
+    <script>
+        var div3 = document.getElementById('demo');
+        console.log(div3.id);    //内置属性
+        console.log(div3.getAttribute('index'));
+
+        //修改自定义属性
+        div3.setAttribute('index', 'dede');   //同样适用于内置属性
+        //老方法：div3.id='test'
+
+        //移除自定义属性
+        div3.removeAttribute('index');
+
+    </script>
+
+    <!-- tab栏切换 -->
+    <!-- css设置有问题 ！！！！！-->
+    <div class="tab">
+        <div class="tab_lis">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价(50000)</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <!-- 第一格默认显示出来 -->
+            <div class="item" style="display: block">内容1</div>
+            <div class="item">内容2</div>
+            <div class="item">内容3</div>
+            <div class="item">内容4</div>
+            <div class="item">内容5</div>
+        </div>
+    </div>
+    <script>
+        var tab_lis = document.querySelector('.tab_lis');
+        var lis = tab_lis.querySelectorAll('li');   //简写
+        //等同于： var lis=document.querySelector('.tab_lis').querySelectorAll('li'); 
+        var items = document.querySelectorAll('.item');
+        for (var j = 0; j < lis.length; j++) {
+            lis[j].setAttribute('index', j)
+            lis[j].onclick = function () {
+                for (var j = 0; j < lis.length; j++) {
+                    lis[j].className = '';
+                }
+                this.className = 'current';
+                var index = this.getAttribute('index')
+                for (var j = 0; j < lis.length; j++) {
+                    items[j].style.display = 'none';
+                }
+                items[index].style.display = 'block';
+            }
+        }
+
+
+        // date-开头的默认是自定义属性
+    </script>
+
+
+</body>
+
+</html>
