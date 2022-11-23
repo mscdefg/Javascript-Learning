@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 父节点操作 -->
+    <div class="=box">
+        <span class="close">x</span>
+    </div>
+    <script>
+        var close = document.querySelector('.close');
+        console.log(close.parentNode);    //得到离元素最近的父节点
+    </script>
+
+    <!-- 子节点操作 -->
+    <ul class="uls">
+        <li>8</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <!-- 新浪下拉菜单 -->
+    <ul class="nav">
+        <li>
+            <a href="">微博</a>
+            <ul>
+                <li><a href="">私信</a></li>
+                <li><a href="">评论</a></li>
+                <li><a href="">@我</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">新闻</a>
+            <ul>
+                <li><a href="">社会</a></li>
+                <li><a href="">财经</a></li>
+                <li><a href="">体育</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">博客</a>
+            <ul>
+                <li><a href="">博客评论</a></li>
+                <li><a href="">未读提醒</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var ul = document.querySelector('.uls');
+        // 1.方法一：
+        console.log(ul.childNodes);    //其中换行会被识别为文本节点
+        //2.方法二：
+        console.log(ul.children);     //非标准，但可以使用
+        //3.获取第一个：
+        console.log(ul.firstChild);
+        console.log(ul.firstElementChild);
+        //4.获取最后一个：
+        console.log(ul.lastChild);
+        console.log(ul.lastElementChild);
+        //5.实际开发写法
+        console.log(ul.children[0]);
+        console.log(ul.children[ul.children.length - 1]);
+
+
+        // 新浪下拉菜单
+        var nav = document.querySelector('.nav');
+        var lis = nav.children;
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                this.children[1].style.display = 'block';   //children[0]是a herf;[1]是ul
+            }
+            lis[i].onmouseout = function () {
+                this.children[1].style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- 创建和添加节点 -->
+    <ul class="ul3">
+        <li>123</li>
+    </ul>
+    <script>
+        var li01 = document.createElement('li');
+        var ul3 = document.querySelector('.ul3');
+        ul3.appendChild(li01);   ////添加在最后
+        var li02 = document.createElement('li');
+        ul3.insertBefore(li02, ul3.children[0]);    //指定位置
+
+    </script>
+
+    <!-- 删除节点 -->
+    <button class="btn">删除</button>
+    <ul class="ul4">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+    <script>
+        var btn = document.querySelector('.btn');
+        var ul4 = document.querySelector('.ul4');
+        btn.onclick = function () {
+            if (ul4.children.length == 0) {
+                this.disabled = true   //★★★
+            } else {
+                ul4.removeChild(ul4.children[0]);
+            }
+        }
+    </script>
+</body>
+
+</html>
