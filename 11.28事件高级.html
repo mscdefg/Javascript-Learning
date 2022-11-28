@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 事件委托 -->
+    <ul>
+        <li>江南无所有</li>
+        <li>江南无所有</li>
+        <li>江南无所有</li>
+        <li>江南无所有</li>
+    </ul>
+    <script>
+        //原理：给父节点添加侦听器，利用事件冒泡影响每一个子节点
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function (e) {
+            // alert('聊赠一枝春');
+            e.target.style.backgroundColor = '#d5d5d5'
+        })
+        //禁止鼠标右键菜单
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        })
+        //禁止选中文字
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        })
+
+        //获得鼠标在页面中坐标
+        document.addEventListener('click', function (e) {
+            //1.相对浏览器可视区的
+            console.log(e.clientX);
+            console.log(e.clientY);
+            console.log('-------------')
+            //2.相对文档页面
+            console.log(e.pageX);
+            console.log(e.pageY);
+        })
+
+        //键盘事件
+        //1.keyup 按键弹起时触发
+        document.addEventListener('keyup', function (e) {
+            console.log('弹起');
+            console.log('up:' + e.keyCode);
+            if (e.keyCode === 65) {
+                alert('您按下了a键');
+            } else {
+                alert('您没有按下a键');
+            }
+        })
+        //2.keydown 按键按下时触发
+        //3.keypress  按键按下时触发(不能识别功能键 ctrl shift 左右键
+        //4.执行顺序down-press-up，与代码顺序无关
+    </script>
+</body>
+
+</html>

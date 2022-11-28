@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            width: 100px;
+            height: 50px;
+            background-color: coral;
+        }
+
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: cornflowerblue;
+        }
+
+        .son {
+            width: 150px;
+            height: 150px;
+            background-color: darkgoldenrod;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- 注册事件的两种方法 -->
+    <h4>请选择你认为的今晚的赢家</h4>
+    <button class="btn1">墨西哥</button>
+    <button class="btn1">阿根廷</button>
+    <script>
+        var btns = document.querySelectorAll('.btn1');
+        //1.传统方式  
+        //  唯一性，只能执行最后一个处理程序
+        btns[0].onclick = function () {
+            alert('恭喜你猜对了！');
+        }
+        btns[0].onclick = function () {
+            alert('很遗憾你猜错了！');
+        }
+        // 2.事件侦听注册时间 addEventListener
+        //   同一事件可以添加多个侦听器（事件处理程序）
+        btns[1].addEventListener('click', function () {    //★没有on
+            alert('很遗憾你猜错了！');
+        })
+        btns[1].addEventListener('click', function () {
+            alert('开玩笑，你猜对了！');
+        })
+    </script>
+
+    <!-- 删除事件/解绑事件 -->
+    <div class="div1">点我</div>
+    <div class="div1">解绑</div>
+    <script>
+        var divs = document.querySelectorAll('.div1')
+        //1.
+        divs[0].onclick = function () {
+            alert('解绑成功');
+            divs[0].onclick = null;
+        }
+        //2.
+        divs[1].addEventListener('click', fn);
+        function fn() {
+            alert('解绑成功');
+            divs[1].removeEventListener('click', fn);
+        }
+    </script>
+
+    <!-- 事件流 -->
+    <!-- addEventListener(type,listener,true) 在事件捕获阶段用事件处理程序 -->
+    <!-- addEventListener(type,listener,false) 在事件冒泡阶段用事件处理程序 -->
+    <!-- 不写默认false -->
+
+    <!-- 事件对象 -->
+    <div class="div2">乌鲁木齐</div>
+    <script>
+        var div2 = document.querySelector('.div2');
+        // div2.onclick = function (event) {
+        //     console.log(event);
+        // }
+        div2.addEventListener('click', function (e) {
+            console.log(e);
+        })
+        //事件对象相当于形参，可以自己命名event evt e
+    </script>
+
+    <!-- e.target和this区别 -->
+    <ul>
+        <li>伤</li>
+        <li>痛</li>
+    </ul>
+    <a
+        href="https://map.baidu.com/poi/%E4%B9%8C%E9%B2%81%E6%9C%A8%E9%BD%90%E4%B8%AD%E8%B7%AF/@13519483.646380436,3642642.1071522995,12.24z?uid=6b58dcaf0610a96b2802e119&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl">点我去往</a>
+    <div class="father">
+        <div class="son">son</div>
+    </div>
+    <script>
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function (e) {
+            console.log(e.target);   //指哪打哪
+            // console.log(this);  返回ul
+
+            //返回事件类型
+            console.log(e.type);    //返回click 
+        })
+        //阻止默认行为
+        var a = document.querySelector('a')
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+        })
+        //阻止冒泡
+        // e.stopPropagation();
+        // e.cancelBubble
+
+        var son = document.querySelector('.son');
+        son.addEventListener('click', function (e) {
+            alert('son');
+            e.stopPropagation();
+        })
+        var father = document.querySelector('.father');
+        father.addEventListener('click', function () {
+            alert('father');
+        })
+    </script>
+</body>
+
+</html>
