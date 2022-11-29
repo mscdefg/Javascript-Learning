@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #d5d5d5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 窗口加载事件 -->
+    <!-- 当文档内容完全加载完成会触发该事件 -->
+    <script>
+        // window.onload = function () {
+        //     var btn = document.querySelector('button');
+        //     btn.addEventListener('click', function () {
+        //         alert('Hello BOM!');
+        //     })
+        // }
+        window.addEventListener('load', function () {
+            var btn = document.querySelector('button');
+            btn.addEventListener('click', function () {
+                alert('Hello BOM!');
+
+            })
+        })
+    </script>
+    <button>开启BOM学习</button>
+    <div></div>
+
+    <script>
+        var div = document.querySelector('div');
+        window.addEventListener('resize', function () {
+            if (window.innerWidth <= 800) {
+                div.style.display = 'none';
+            }
+        })
+
+        // setTimeout定时器
+        function callback() {
+            console.log('爆炸了');
+        }
+        var time1 = setTimeout(callback, 3000);  //单位毫秒
+        var time2 = setTimeout(callback, 5000);
+
+    </script>
+
+    <button class="btn1">停止setTimeout定时器</button>
+    <button class="btn2">停止setInteval定时器</button>
+
+    <script>
+        // 清除setTimeout
+        var btn1 = document.querySelector('.btn1');
+        var timer = setTimeout(function () {
+            console.log('又爆炸了');
+        }, 6000)
+        btn1.addEventListener('click', function () {
+            clearTimeout(timer);  //括号里跟定时器名称
+        })
+        // setInterval定时器   重复调用
+        timer2 = setInterval(function () {
+            console.log('继续输出')
+        }, 1000);
+        //清除setInteval
+        var btn2 = document.querySelector('.btn2');
+        btn2.addEventListener('click', function () {
+            clearInterval(timer2)
+        })
+    </script>
+
+
+</body>
+
+</html>
