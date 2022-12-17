@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+      /* *{
+        margin-top: 20px;
+      } */
+      .div {
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+      }
+      #div {
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+      }
+      .apple{
+        width: 50px;
+        height: 50px;
+        background-color:limegreen;
+        transition: all 0.5s;
+      }
+      .ripe{
+        background-color:brown;
+        transform:rotate(180deg) ;
+      }
+    </style>
+  </head>
+  <br>
+    <div class="div"></div>
+    <span>新</span></br>
+    <span>年</span></br>
+    <span>好</span>
+    <ul>
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+      <li>444</li>
+      <li>555</li>
+    </ul>
+    <ol>
+      <li>我要变色</li>
+      <li>我要变色</li>
+      <li class="iteam">我不要变色</li>
+      <li>我要变色</li>
+      <li>我要变色</li>
+    </ol>
+    <button>排他</button>
+    <button>排他</button>
+    <button>排他</button>
+    <button>排他</button>
+
+    <div id="div"></div>
+
+    <div class="apple"></div>
+    <script>
+      //$(function(){}是入口函数，等DOM加载完毕再去执行js)
+      $(function () {
+        $(".div").hide();
+        //隐式迭代
+        $("span").css("background","yellow");
+        //筛选选择器
+        $("ul li:first").css("background","red");
+        $("ul li:last").css("background","blue");
+        $("ul li:eq(1)").css("background","orange");
+        $("ul li:odd").css("font-weight","bold");//索引号奇偶
+        $("ul li:even").css("text-decoration","underline");
+
+        $("ol .iteam").siblings("li").css("color","darkblue")
+        //排他思想
+        $("button").click(function(){
+          //链式编程
+          // $(this).siblings().css("background","gray");  兄弟变色
+          $(this).css("background","gray").siblings().css("background","");
+        })
+        //修改多个样式，用对象的方式
+        $("#div").css({
+          width:400,
+          height:400,
+          backgroundColor:"darkkhaki" //复合属性，驼峰
+        })
+        //addClass添加类
+        // $(".apple").click(function(){
+        //   $(this).addClass("ripe")
+        // })
+        // removeClass删除类
+        //toggleClass切换类
+        $(".apple").click(function(){
+          $(this).toggleClass("ripe")
+        })
+      });
+    </script>
+  </body>
+</html>
